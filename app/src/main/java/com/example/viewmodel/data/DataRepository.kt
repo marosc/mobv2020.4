@@ -16,6 +16,7 @@
 
 package com.example.viewmodel.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.viewmodel.data.db.LocalCache
 import com.example.viewmodel.data.db.model.MarsItem
@@ -57,6 +58,7 @@ class DataRepository private constructor(
             val response = api.getProperties()
             if (response.isSuccessful) {
                 response.body()?.let {
+                    Log.d("odpoved zo servera", "je $it")
                     return cache.insertImages(it.map { item ->
                         MarsItem(
                             item.price,

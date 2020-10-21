@@ -1,13 +1,13 @@
 package com.example.viewmodel.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewmodel.R
 import com.example.viewmodel.data.db.model.MarsItem
-import com.squareup.picasso.Picasso
 
 class MarsAdapter : RecyclerView.Adapter<MarsAdapter.ViewHolder>() {
 
@@ -33,14 +33,16 @@ class MarsAdapter : RecyclerView.Adapter<MarsAdapter.ViewHolder>() {
 
 
         fun bind(item: MarsItem) {
-            Picasso.get().load(item.img_src).into(itemView as ImageView)
+            Log.d("udajeVRiadku", "su $item")
+            //Picasso.get().load(item.img_src).into(itemView as ImageView)
+            (itemView as TextView).text = "${item.price} eur"
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val view = layoutInflater
-                    .inflate(R.layout.image_item, parent, false)
+                    .inflate(R.layout.text_item, parent, false)
 
                 return ViewHolder(view)
             }

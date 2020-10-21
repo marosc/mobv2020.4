@@ -23,10 +23,18 @@
             app:layout_constraintTop_toTopOf="parent"
             android:onClick="@{() -> model.loadMars()}" />
 
+        <TextView
+            android:id="@+id/chybova_hlaska"
+            android:text="@{model.error}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/word_btn"
+            app:layout_constraintBottom_toTopOf="@id/image_list" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/image_list"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/word_btn"
+            app:layout_constraintTop_toBottomOf="@id/chybova_hlaska"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent"

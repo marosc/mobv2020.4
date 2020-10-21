@@ -2,6 +2,7 @@ package com.example.viewmodel.ui
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +43,10 @@ class MarsFragment : Fragment() {
 
         val adapter = MarsAdapter()
         binding.imageList.adapter = adapter
-        marsViewModel.images.observe(viewLifecycleOwner) { adapter.data = it }
+        marsViewModel.images.observe(viewLifecycleOwner) {
+            Log.d("udajeZdb", "su $it")
+            adapter.data = it
+        }
 
         return binding.root
     }
