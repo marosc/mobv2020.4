@@ -9,7 +9,7 @@ import com.example.viewmodel.data.db.model.WordItem
 
 @Database(
     entities = [WordItem::class, MarsItem::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppRoomDatabase : RoomDatabase() {

@@ -37,5 +37,8 @@ class HomeFragment : Fragment() {
         binding.dbBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_hometo_database)
         }
+        binding.marsBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_hometo_mars)
+        }
     }
 }
