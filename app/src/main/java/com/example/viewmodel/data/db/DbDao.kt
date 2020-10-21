@@ -2,6 +2,7 @@ package com.example.viewmodel.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.viewmodel.data.db.model.MarsItem
 import com.example.viewmodel.data.db.model.WordItem
 
 @Dao
@@ -27,4 +28,9 @@ interface DbDao {
     //TODO: 14. vytvorit Fragment+Viewmodel+layout pre vytvorenie a imageitem
     //TODO: 15. vytvorit Fragment+Viewmodel+layout zobrazenie posledneho vlozeneho obrazku spolu s textom
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertImages(marsItems: List<MarsItem>)
+
+    @Query("SELECT * FROM images")
+    fun getImages(): LiveData<List<MarsItem>>
 }

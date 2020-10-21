@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.viewmodel.data.DataRepository
 import com.example.viewmodel.data.db.AppRoomDatabase
 import com.example.viewmodel.data.db.LocalCache
+import com.opinyour.android.app.data.api.WebApi
 
 /**
  * Class that handles object creation.
@@ -35,7 +36,7 @@ object Injection {
     }
 
     fun provideDataRepository(context: Context): DataRepository {
-        return DataRepository.getInstance(provideCache(context))
+        return DataRepository.getInstance(WebApi.create(context), provideCache(context))
     }
 
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {

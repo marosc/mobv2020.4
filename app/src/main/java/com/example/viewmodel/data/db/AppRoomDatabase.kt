@@ -4,10 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.viewmodel.data.db.model.MarsItem
 import com.example.viewmodel.data.db.model.WordItem
 
 @Database(
-    entities = [WordItem::class],
+    entities = [WordItem::class, MarsItem::class],
     version = 1,
     exportSchema = false
 )
