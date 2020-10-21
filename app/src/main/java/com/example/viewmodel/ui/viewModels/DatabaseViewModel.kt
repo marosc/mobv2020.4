@@ -9,7 +9,10 @@ import kotlinx.coroutines.launch
 class DatabaseViewModel(private val repository: DataRepository) : ViewModel() {
     val input: MutableLiveData<String> = MutableLiveData()
 
-    val text: LiveData<String> = Transformations.map(repository.getWords()) { it.toString() }
+    val words: LiveData<List<WordItem>>
+        get() = repository.getWords()
+
+    val text: LiveData<String> = Transformations.map(words) { it.toString() }
 
     fun insertWord() {
         input.value?.let {

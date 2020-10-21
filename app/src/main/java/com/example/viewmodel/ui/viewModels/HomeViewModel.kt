@@ -8,11 +8,9 @@ import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel() {
     val input: MutableLiveData<String> = MutableLiveData()
-
-    private val _word: MutableLiveData<String> = MutableLiveData()
-
     val welcome = Transformations.map(input) { w -> "Slovo je: $w" }
 
+    private val _word: MutableLiveData<String> = MutableLiveData()
     val word: LiveData<String>
         get() = _word
 
