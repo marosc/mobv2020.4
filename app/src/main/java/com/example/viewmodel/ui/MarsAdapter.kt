@@ -1,5 +1,6 @@
 package com.example.viewmodel.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,12 @@ class MarsAdapter : RecyclerView.Adapter<MarsAdapter.ViewHolder>() {
 
 
         fun bind(item: MarsItem) {
-            Picasso.get().load(item.img_src).into(itemView as ImageView)
+            Log.d("vRiadku", "je $item")
+            Picasso.get()
+                .load(item.img_src)
+                .placeholder(R.drawable.ic_baseline_panorama_24)
+                .error(R.drawable.ic_baseline_error_outline_24)
+                .into(itemView as ImageView);
         }
 
         companion object {
