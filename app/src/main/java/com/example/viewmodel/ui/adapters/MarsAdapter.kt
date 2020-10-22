@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewmodel.data.db.model.MarsItem
-import com.example.viewmodel.databinding.ImageItemBinding
+import com.example.viewmodel.databinding.MarsItemBinding
 import com.example.viewmodel.ui.autoNotify
 import kotlin.properties.Delegates
 
@@ -29,7 +29,7 @@ class MarsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         )
     }
 
-    class ViewHolder(private var binding: ImageItemBinding) :
+    class ViewHolder(private var binding: MarsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
 
@@ -41,7 +41,7 @@ class MarsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
-                val view = ImageItemBinding.inflate(LayoutInflater.from(parent.context))
+                val view = MarsItemBinding.inflate(LayoutInflater.from(parent.context))
 
                 return ViewHolder(
                     view
