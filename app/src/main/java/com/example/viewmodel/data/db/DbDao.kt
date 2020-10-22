@@ -22,7 +22,14 @@ interface DbDao {
     fun getWords(): LiveData<List<WordItem>>
 
     //TODO: 11. vymazat slova obsahujuce "slovo", pomocou databinding
+    @Query("DELETE FROM words WHERE word like '%slovo%'")
+    suspend fun deleteWords()
+
+
     //TODO: 12. pridat slovam obsahujuce "slovo", priponu "databinding"
+    @Query("UPDATE words SET word= word || 'databinding' WHERE word like '%slovo%'")
+    suspend fun updateWords()
+
     //TODO: 13. vytvorit DAO metody pre ImageItem
     //TODO: 14. vytvorit Fragment+Viewmodel+layout pre vytvorenie a imageitem
     //TODO: 15. vytvorit Fragment+Viewmodel+layout zobrazenie posledneho vlozeneho obrazku spolu s textom

@@ -25,4 +25,12 @@ class LocalCache(private val dao: DbDao) {
 
     fun getWords(): LiveData<List<WordItem>> = dao.getWords()
 
+    suspend fun updateWords() {
+        dao.updateWords()
+    }
+
+    suspend fun deleteWords() {
+        dao.deleteWords()
+    }
+
 }

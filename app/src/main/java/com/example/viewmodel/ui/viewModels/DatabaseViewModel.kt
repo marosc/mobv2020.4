@@ -24,4 +24,17 @@ class DatabaseViewModel(private val repository: DataRepository) : ViewModel() {
             }
         }
     }
+
+    fun deleteWords() {
+        viewModelScope.launch {
+            repository.deleteWords()
+        }
+    }
+
+
+    fun updateWords() {
+        viewModelScope.launch {
+            repository.updateWords()
+        }
+    }
 }

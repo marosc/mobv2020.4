@@ -18,10 +18,7 @@ package com.example.viewmodel.data
 
 import androidx.lifecycle.LiveData
 import com.example.viewmodel.data.db.LocalCache
-import com.example.viewmodel.data.db.model.VideoItem
 import com.example.viewmodel.data.db.model.WordItem
-import com.google.gson.Gson
-import java.io.File
 
 /**
  * Repository class that works with local and remote data sources.
@@ -48,5 +45,11 @@ class DataRepository private constructor(
         cache.insertWord(wordItem)
     }
 
+    suspend fun updateWords() {
+        cache.updateWords()
+    }
 
+    suspend fun deleteWords() {
+        cache.deleteWords()
+    }
 }
