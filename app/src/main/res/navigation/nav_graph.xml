@@ -6,18 +6,18 @@
 
     <fragment
         android:id="@+id/databaseFragment"
-        android:name="com.example.viewmodel.ui.DatabaseFragment"
+        android:name="com.example.viewmodel.ui.fragments.DatabaseFragment"
         android:label="DatabaseFragment" />
 
     <fragment
         android:id="@+id/marsFragment"
-        android:name="com.example.viewmodel.ui.MarsFragment"
+        android:name="com.example.viewmodel.ui.fragments.MarsFragment"
         android:label="MarsFragment" />
 
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.viewmodel.ui.HomeFragment"
+        android:name="com.example.viewmodel.ui.fragments.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_hometo_database"

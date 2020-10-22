@@ -1,4 +1,4 @@
-package com.example.viewmodel.ui
+package com.example.viewmodel.ui.fragments
 
 
 import android.os.Bundle

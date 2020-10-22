@@ -15,7 +15,19 @@
   -->
 
 
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp"
-    android:layout_width="360dp"
-    android:layout_height="360dp" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="property"
+            type="com.example.viewmodel.data.db.model.MarsItem" />
+    </data>
+
+    <ImageView
+        app:imageUrl="@{property.img_src}"
+        android:padding="16dp"
+        android:layout_width="360dp"
+        android:layout_height="360dp" />
+</layout>

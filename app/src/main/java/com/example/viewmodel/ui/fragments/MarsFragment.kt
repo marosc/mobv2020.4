@@ -1,4 +1,4 @@
-package com.example.viewmodel.ui
+package com.example.viewmodel.ui.fragments
 
 
 import android.os.Bundle
@@ -12,14 +12,15 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewmodel.R
-import com.example.viewmodel.databinding.FragmentDatabaseBinding
-import com.example.viewmodel.ui.viewModels.DatabaseViewModel
+import com.example.viewmodel.databinding.FragmentMarsBinding
+import com.example.viewmodel.ui.adapters.MarsAdapter
+import com.example.viewmodel.ui.viewModels.MarsViewModel
 import com.opinyour.android.app.data.utils.Injection
 
 
-class DatabaseFragment : Fragment() {
-    private lateinit var databaseViewModel: DatabaseViewModel
-    private lateinit var binding: FragmentDatabaseBinding
+class MarsFragment : Fragment() {
+    private lateinit var marsViewModel: MarsViewModel
+    private lateinit var binding: FragmentMarsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,24 +28,24 @@ class DatabaseFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_database, container, false
+            inflater, R.layout.fragment_mars, container, false
         )
         binding.lifecycleOwner = this
-        databaseViewModel =
-            ViewModelProvider(this, Injection.provideViewModelFactory(requireContext()))
-                .get(DatabaseViewModel::class.java)
+        marsViewModel = ViewModelProvider(this, Injection.provideViewModelFactory(requireContext()))
+            .get(MarsViewModel::class.java)
 
-        binding.model = databaseViewModel
+        binding.model = marsViewModel
 
-        binding.wordsList.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        binding.imageList.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         //binding.wordsList.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,true)
         //binding.wordsList.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
         //binding.wordsList.layoutManager = GridLayoutManager(context,3,RecyclerView.VERTICAL,false)
 
-        val adapter = MessagesAdapter()
-        binding.wordsList.adapter = adapter
-        databaseViewModel.words.observe(viewLifecycleOwner) { adapter.data = it }
-
+        val adapter = MarsAdapter()
+        binding.imageList.adapter = adapter
+        marsViewModel.images.observe(viewLifecycleOwner) {
+            adapter.items = it
+        }
 
         return binding.root
     }

@@ -1,4 +1,4 @@
-package com.example.viewmodel.ui
+package com.example.viewmodel.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +25,9 @@ class MessagesAdapter : RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        return ViewHolder.from(
+            parent
+        )
     }
 
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -41,7 +43,9 @@ class MessagesAdapter : RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
                 val view = layoutInflater
                     .inflate(R.layout.text_item, parent, false)
 
-                return ViewHolder(view)
+                return ViewHolder(
+                    view
+                )
             }
         }
     }
