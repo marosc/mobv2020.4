@@ -14,7 +14,27 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        demo {
+            storeFile file('../test.jks')
+            storePassword 'heslo123'
+            keyPassword 'heslo123'
+            keyAlias = 'testkey'
+        }
+    }
+
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+        }
+        demo {
+            initWith debug
+            applicationIdSuffix ".demo"
+            debuggable true
+            signingConfig signingConfigs.demo
+        }
+        
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
