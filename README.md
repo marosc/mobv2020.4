@@ -1,54 +1,76 @@
-# Mobilne Vypocty - Cvicenie 4
+# Mobilne Vypocty 2020
 
-HomeFragment
+## Master (Branch)
 
-    //TODO: 1. prerobit na databinding
-    
-    //TODO: 2. nahradit observer databindingom v xml
+Pouzitie ViewModel-View-Fragment, klasicky sposob pomocou Inflater-a.
+
+Ref: HomeFragment.kt, HomeViewModel.kt, fragment_home.xml
+
+## Viewmodel2020.1 (Branch)
+
+Pouzitie ViewModel-View-Fragment, pomocou DataBinding-u
+
+Ref: HomeFragment.kt, HomeViewModel.kt, fragment_home.xml
+
+## Viewmodel2020.2 (Branch)
+
+Pouzitie ViewModel-View-Fragment, pomocou DataBinding-u.  
+Ukazka navrhoveho vzoru Repozitar. Spolupraca s databazou SQLite za pomoci Room.  
+Pouzitie Navigation kniznice na presun medzi fragmentami.
+
+Ref: HomeFragment.kt, DatabaseFragment.kt, DatabaseViewModel.kt, DataRepository.kt, ViewModelFactory.kt, Injection.kt, LocalCache.kt, DBDao.kt, AppRoomDatabase.kt, WordItem.kt, fragment_home.xml, fragment_database.xml, nav_graph.xml
 
 
-HomeViewModel
+## RecyclerView (Branch)
 
-    //TODO: 3. urobit enkapsulaciu premennej word
-    
-    //TODO: 4. urobit obojsmerny binding pre edittext
-    
-    //TODO: 5. nahradit listener databindingom v xml
-    
-    
-HomeFragment
+Pouzitie komponentu RecyclerView na zobrazenie skrolovatelneho zoznamu zaznamov.
 
-    //TODO: 6. umoznit navigaciu do DatabaseFragmentu po stlaceni tlacidla
-    
-    
-HomeViewModel
+Ref: DatabaseFragment.kt, DatabaseViewModel.kt, MessagesAdapter.kt, fragment_database.xml, text_item.xml
 
-    //TODO: 6b.urobit transformaciu slova aby sa zobrazoval text "Slovo je: "
-    
-    
-DatabaseFragment
 
-     //TODO: 7. prerobit na databinding
-     
-DatabaseViewModel
+## DeleteUpdate (Branch)
 
-    //TODO: 8. nahradit observer databindingom v xml
-    
-    //TODO: 9. urobit obojsmerny binding pre edittext
-    
-    //TODO: 10. nahradit listener databindingom v xml
-    
-    
-DbDao
+Ukazka ako pouzivat upravu/vymazavanie dat v databaze.
 
-    //TODO: 11. vymazat slova obsahujuce "slovo", pomocou databinding
-    
-    //TODO: 12. pridat slovam obsahujuce "slovo", priponu "databinding"
-    
-    //TODO: 13. vytvorit DAO metody pre ImageItem
-    
-    //TODO: 14. vytvorit Fragment+Viewmodel+layout pre vytvorenie a imageitem
-    
-    //TODO: 15. vytvorit Fragment+Viewmodel+layout zobrazenie posledneho vlozeneho obrazku spolu s textom
-    
-    
+Ref: DatabaseFragment.kt, DatabaseViewModel.kt, fragment_database.xml,  DataRepository.kt, LocalCache.kt, DBDao.kt
+
+
+## DeleteUpdate (Branch)
+
+Ukazka ako pouzivat upravu/vymazavanie dat v databaze.
+
+Ref: DatabaseFragment.kt, DatabaseViewModel.kt, fragment_database.xml,  DataRepository.kt, LocalCache.kt, DBDao.kt
+
+## InternetText (Branch)
+
+Ukazka ako nacitavat udaje z Webservisu pomocou Retrofit v navrhovom vzore Repozitar a ukladat do lokalnej databazy.
+Nasledne ziskane udaje z lokalnej databazy zobrazovat v RecyclerView.
+
+Ref: DatabaseFragment.kt, DatabaseViewModel.kt, WebApi.kt, Responses.kt,   DataRepository.kt, LocalCache.kt, DBDao.kt,  Injection.kt, MarsAdapter.kt, MarsItem.kt, mars_item.xml
+
+## InternetText (Branch)
+
+Ukazka ako nacitavat udaje z Webservisu pomocou Retrofit v navrhovom vzore Repozitar a ukladat do lokalnej databazy.
+Nasledne ziskane udaje z lokalnej databazy zobrazovat v RecyclerView.
+
+Ref: DatabaseFragment.kt, DatabaseViewModel.kt,  WebApi.kt, Responses.kt,   DataRepository.kt, LocalCache.kt, DBDao.kt,  Injection.kt
+
+## InternetDetail (Branch)
+
+Rozsirenie riadkov v RecyclerView z TextView na ConstraintLayout a pridanie viacerych informacii.
+Zobrazenie obrazku z internetu.
+
+Ref: DatabaseFragment.kt, DatabaseViewModel.kt,  WebApi.kt, Responses.kt,   DataRepository.kt, LocalCache.kt, DBDao.kt,  Injection.kt, MarsAdapter.kt, MarsItem.kt, mars_item.xml
+
+
+## InternetBinding (Branch)
+
+InternetText pouzitim Databindingu
+
+Ref: DatabaseFragment.kt, DatabaseViewModel.kt,  MarsAdapter.kt, MarsItem.kt, mars_item.xml
+
+## InternetBindingDetail (Branch)
+
+InternetDetail pouzitim Databindingu
+
+Ref: DatabaseFragment.kt, DatabaseViewModel.kt,  MarsAdapter.kt, MarsItem.kt, mars_item.xml
