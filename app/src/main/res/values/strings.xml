@@ -3,4 +3,5 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">Save</string>
+    <string name="otvorit_database_fragment">Otvorit Database Fragment</string>
 </resources>
