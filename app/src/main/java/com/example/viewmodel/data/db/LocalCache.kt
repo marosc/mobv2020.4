@@ -15,14 +15,23 @@ class LocalCache(private val dao: DbDao) {
         dao.insertWord(wordItem)
     }
 
-    suspend fun updateVideo(wordItem: WordItem) {
+    suspend fun updateWord(wordItem: WordItem) {
         dao.updateWord(wordItem)
     }
 
-    fun deleteWord(wordItem: WordItem) {
+    suspend fun deleteWord(wordItem: WordItem) {
+        dao.deleteWord(wordItem)
+    }
+
+    fun deleteWordG(wordItem: WordItem) {
         GlobalScope.launch { dao.deleteWord(wordItem) }
     }
 
     fun getWords(): LiveData<List<WordItem>> = dao.getWords()
 
+    suspend fun deleteSlovo() = dao.deleteBySlovo()
+
+    suspend fun updateSlovo() = dao.updateSlovo()
+
+    suspend fun getAllWords() = dao.getAllWords()
 }

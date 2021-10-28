@@ -16,17 +16,18 @@
 
 package com.example.viewmodel.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
+import com.example.viewmodel.data.api.WebApi
 import com.example.viewmodel.data.db.LocalCache
-import com.example.viewmodel.data.db.model.VideoItem
 import com.example.viewmodel.data.db.model.WordItem
-import com.google.gson.Gson
-import java.io.File
+import java.net.ConnectException
 
 /**
  * Repository class that works with local and remote data sources.
  */
 class DataRepository private constructor(
+    private val api: WebApi,
     private val cache: LocalCache
 ) {
 
@@ -35,10 +36,10 @@ class DataRepository private constructor(
         @Volatile
         private var INSTANCE: DataRepository? = null
 
-        fun getInstance(cache: LocalCache): DataRepository =
+        fun getInstance(api: WebApi, cache: LocalCache): DataRepository =
             INSTANCE ?: synchronized(this) {
                 INSTANCE
-                    ?: DataRepository(cache).also { INSTANCE = it }
+                    ?: DataRepository(api, cache).also { INSTANCE = it }
             }
     }
 
@@ -48,5 +49,35 @@ class DataRepository private constructor(
         cache.insertWord(wordItem)
     }
 
+    suspend fun updateWord(wordItem: WordItem) {
+        cache.updateWord(wordItem)
+    }
 
+    suspend fun deleteWord(wordItem: WordItem) {
+        cache.deleteWord(wordItem)
+    }
+
+
+    suspend fun deleteSlovo() = cache.deleteSlovo()
+
+    suspend fun updateSlovo() = cache.updateSlovo()
+
+    suspend fun getAllWords() = cache.getAllWords()
+
+    suspend fun loadMars() {
+        try {
+            val response = api.getProperties()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Log.d("pozemky", it.toString())
+                }
+            }
+        } catch (ex: ConnectException) {
+            Log.e("pozemky", "Offline skontrolujte pripojenie")
+            return
+        } catch (ex: Exception) {
+            Log.e("pozemky", "Nepodarilo sa nacitat.")
+            return
+        }
+    }
 }

@@ -20,7 +20,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.viewmodel.data.DataRepository
 import com.example.viewmodel.ui.viewModels.DatabaseViewModel
-import com.example.viewmodel.ui.viewModels.HomeViewModel
+import com.example.viewmodel.ui.viewModels.MarsViewModel
 
 /**
  * Factory for ViewModels
@@ -32,6 +32,11 @@ class ViewModelFactory(private val repository: DataRepository) : ViewModelProvid
         if (modelClass.isAssignableFrom(DatabaseViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return DatabaseViewModel(repository) as T
+        }
+
+        if (modelClass.isAssignableFrom(MarsViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MarsViewModel(repository) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class")

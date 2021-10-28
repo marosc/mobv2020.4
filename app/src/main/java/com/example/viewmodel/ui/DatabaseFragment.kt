@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.example.viewmodel.R
 import com.example.viewmodel.databinding.FragmentDatabaseBinding
 import com.example.viewmodel.ui.viewModels.DatabaseViewModel
 import com.opinyour.android.app.data.utils.Injection
-import kotlinx.android.synthetic.main.fragment_database.*
 
 
 class DatabaseFragment : Fragment() {
@@ -26,7 +24,11 @@ class DatabaseFragment : Fragment() {
     ): View? {
 
         databaseViewModel =
-            ViewModelProvider(this, Injection.provideViewModelFactory(requireContext()))
+            ViewModelProvider(
+                this, Injection.provideViewModelFactory(
+                    requireContext()
+                )
+            )
                 .get(DatabaseViewModel::class.java)
 
 

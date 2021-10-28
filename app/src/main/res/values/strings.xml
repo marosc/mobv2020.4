@@ -4,4 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">Save</string>
     <string name="otvorit_database_fragment">Otvorit Database Fragment</string>
+    <string name="vymaz">Vymaz</string>
+    <string name="uprav_slova">Uprav slova</string>
+    <string name="nacitaj_udaje">Nacitaj udaje</string>
 </resources>

@@ -27,11 +27,27 @@ class DatabaseViewModel(private val repository: DataRepository) : ViewModel() {
     //TODO: 10. nahradit listener databindingom v xml
     fun insertWord() {
         inputText.value?.let {
-            if (it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 viewModelScope.launch { repository.insertWord(WordItem(it)) }
                 inputText.postValue("")
             }
         }
 
+    }
+
+    fun deleteSlovo() {
+        viewModelScope.launch {
+            repository.deleteSlovo()
+        }
+    }
+
+    fun updateSlovo() {
+        viewModelScope.launch {
+            val slova = repository.getAllWords()
+            slova.forEach {
+                repository.deleteWord(it)
+                repository.insertWord(WordItem("${it.word} databinding"))
+            }
+        }
     }
 }

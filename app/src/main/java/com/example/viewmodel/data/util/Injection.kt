@@ -19,6 +19,7 @@ package com.opinyour.android.app.data.utils
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.example.viewmodel.data.DataRepository
+import com.example.viewmodel.data.api.WebApi
 import com.example.viewmodel.data.db.AppRoomDatabase
 import com.example.viewmodel.data.db.LocalCache
 
@@ -35,7 +36,7 @@ object Injection {
     }
 
     fun provideDataRepository(context: Context): DataRepository {
-        return DataRepository.getInstance(provideCache(context))
+        return DataRepository.getInstance(WebApi.create(), provideCache(context))
     }
 
     fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {

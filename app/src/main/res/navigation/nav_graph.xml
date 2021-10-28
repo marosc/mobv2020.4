@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph" app:startDestination="@id/homeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/marsFragment">
 
-    <fragment android:id="@+id/databaseFragment" android:name="com.example.viewmodel.ui.DatabaseFragment"
-              android:label="DatabaseFragment"/>
+    <fragment
+        android:id="@+id/databaseFragment"
+        android:name="com.example.viewmodel.ui.DatabaseFragment"
+        android:label="DatabaseFragment" />
 
-    <fragment android:id="@+id/homeFragment" android:name="com.example.viewmodel.ui.HomeFragment"
-              android:label="HomeFragment">
-        <action android:id="@+id/go_to_database"
-            app:destination="@id/databaseFragment"/>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.viewmodel.ui.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/go_to_database"
+            app:destination="@id/databaseFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/marsFragment"
+        android:name="com.example.viewmodel.ui.MarsFragment"
+        android:label="Mars Fragment" />
 </navigation>
