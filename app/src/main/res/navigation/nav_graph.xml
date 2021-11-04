@@ -21,5 +21,14 @@
     <fragment
         android:id="@+id/marsFragment"
         android:name="com.example.viewmodel.ui.MarsFragment"
-        android:label="Mars Fragment" />
+        android:label="Mars Fragment">
+        <action
+            android:id="@+id/go_to_detail"
+            app:destination="@id/marsDetail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/marsDetail"
+        android:name="com.example.viewmodel.ui.MarsDetailFragment"
+        android:label="Detail" />
 </navigation>

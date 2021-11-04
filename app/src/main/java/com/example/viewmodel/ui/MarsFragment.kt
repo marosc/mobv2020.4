@@ -8,9 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viewmodel.R
+import com.example.viewmodel.data.db.model.MarsItem
 import com.example.viewmodel.databinding.FragmentMarsBinding
 import com.example.viewmodel.ui.adapter.MarsAdapter
 import com.example.viewmodel.ui.viewModels.MarsViewModel
@@ -28,7 +30,7 @@ class MarsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mars, container, false)
 
         viewModel = ViewModelProvider(
-            this,
+            requireActivity(),//this,
             Injection.provideViewModelFactory(requireContext())
         )
             .get(MarsViewModel::class.java)
@@ -40,12 +42,17 @@ class MarsFragment : Fragment() {
         binding.showMars.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
-        val adapter = MarsAdapter()
+        val adapter = MarsAdapter(object : MarsAdapter.MarsClick {
+            override fun onClick(item: MarsItem) {
+                viewModel.selected.postValue(item)
+                Navigation.findNavController(requireView()).navigate(R.id.go_to_detail)
+            }
+        })
         binding.showMars.adapter = adapter
 
         viewModel.images.observe(viewLifecycleOwner) {
-            adapter.updateData(it)
-//            adapter.items = it
+//            adapter.updateData(it)
+            adapter.items = it
         }
 
         return binding.root

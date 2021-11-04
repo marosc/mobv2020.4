@@ -14,6 +14,8 @@ class MarsViewModel(private val repository: DataRepository) : ViewModel() {
 
     val error: MutableLiveData<String> = MutableLiveData()
 
+    val selected: MutableLiveData<MarsItem> = MutableLiveData()
+
     fun loadMarsData() {
         viewModelScope.launch {
             repository.loadMars { error.postValue(it) }

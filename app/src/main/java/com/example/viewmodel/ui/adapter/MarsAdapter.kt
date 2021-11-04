@@ -9,23 +9,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.viewmodel.data.db.model.MarsItem
 import com.example.viewmodel.databinding.MarsItemBinding
 import com.squareup.picasso.Picasso
+import kotlin.properties.Delegates
 
-class MarsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    val items: MutableList<MarsItem> = mutableListOf()
-
-    public fun updateData(newItems: List<MarsItem>) {
-        items.clear()
-        items.addAll(newItems)
-        notifyDataSetChanged()
+class MarsAdapter(val marsClick: MarsClick?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    interface MarsClick {
+        fun onClick(item: MarsItem) {}
     }
 
-//    var items: List<MarsItem> by Delegates.observable(emptyList()) { prop, old, new ->
-//        autoNotify(old, new) { o, n -> o.id.compareTo(n.id) == 0 }
+//    val items: MutableList<MarsItem> = mutableListOf()
+//
+//    public fun updateData(newItems: List<MarsItem>) {
+//        items.clear()
+//        items.addAll(newItems)
+//        notifyDataSetChanged()
 //    }
 
+    var items: List<MarsItem> by Delegates.observable(emptyList()) { prop, old, new ->
+        autoNotify(old, new) { o, n -> o.id.compareTo(n.id) == 0 }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MarsViewHolder.from(parent)
+        return MarsViewHolder.from(parent, marsClick)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -36,18 +40,21 @@ class MarsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return items.size
     }
 
-    class MarsViewHolder(private var binding: MarsItemBinding) :
+    class MarsViewHolder(private var binding: MarsItemBinding, private val marsClick: MarsClick?) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: MarsItem) {
             binding.property = item
+            binding.root.setOnClickListener {
+                marsClick?.onClick(item)
+            }
             binding.executePendingBindings()
         }
 
         companion object {
-            fun from(parent: ViewGroup): RecyclerView.ViewHolder {
+            fun from(parent: ViewGroup, marsClick: MarsClick?): RecyclerView.ViewHolder {
                 val view = MarsItemBinding.inflate(LayoutInflater.from(parent.context))
-                return MarsViewHolder(view)
+                return MarsViewHolder(view, marsClick)
             }
         }
     }
