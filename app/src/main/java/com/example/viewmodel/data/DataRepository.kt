@@ -20,6 +20,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.viewmodel.data.api.WebApi
 import com.example.viewmodel.data.db.LocalCache
+import com.example.viewmodel.data.db.model.MarsItem
 import com.example.viewmodel.data.db.model.WordItem
 import java.net.ConnectException
 
@@ -64,19 +65,29 @@ class DataRepository private constructor(
 
     suspend fun getAllWords() = cache.getAllWords()
 
-    suspend fun loadMars() {
+
+    fun getMars(): LiveData<List<MarsItem>> = cache.getImages()
+
+    suspend fun loadMars(onError: (error: String) -> Unit) {
         try {
             val response = api.getProperties()
             if (response.isSuccessful) {
                 response.body()?.let {
                     Log.d("pozemky", it.toString())
+                    cache.insertImages(it.map { item ->
+                        MarsItem(item.price, item.id, item.type, item.img_src)
+                    })
+                    return
                 }
             }
+            onError("Nacitanie obrazkov zlyhalo. Skuste neskor.")
         } catch (ex: ConnectException) {
             Log.e("pozemky", "Offline skontrolujte pripojenie")
+            onError("Offline skontrolujte pripojenie")
             return
         } catch (ex: Exception) {
             Log.e("pozemky", "Nepodarilo sa nacitat.")
+            onError("Nieco sa pokazilo")
             return
         }
     }

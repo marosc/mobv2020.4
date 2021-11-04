@@ -1,6 +1,7 @@
 package com.example.viewmodel.data.db
 
 import androidx.lifecycle.LiveData
+import com.example.viewmodel.data.db.model.MarsItem
 import com.example.viewmodel.data.db.model.WordItem
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -34,4 +35,10 @@ class LocalCache(private val dao: DbDao) {
     suspend fun updateSlovo() = dao.updateSlovo()
 
     suspend fun getAllWords() = dao.getAllWords()
+
+    suspend fun insertImages(marsItems: List<MarsItem>) {
+        dao.insertImages(marsItems)
+    }
+
+    fun getImages(): LiveData<List<MarsItem>> = dao.getImages()
 }
